@@ -1,0 +1,33 @@
+name: Qua
+
+on:
+  pull_request:
+    branches: [ "release/**" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: analyze
+        run:
+          echo Analyzing.
+
+      - name: build
+        run: |
+          echo Building,
+          echo and Testing.
+          
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: deploy
+        run: |
+          echo Deploying to Qua environment.
