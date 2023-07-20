@@ -26,8 +26,8 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    environment: Quality
 
     steps:
       - name: deploy
-        run: |
-          echo Deploying to Qua environment.
+        run: echo Deploying to Qua environment.
