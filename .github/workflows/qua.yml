@@ -1,7 +1,7 @@
 name: Qua
 
 on:
-  pull_request:
+  push:
     branches: [ "release/**" ]
 
   workflow_dispatch:
