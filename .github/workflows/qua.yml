@@ -19,9 +19,9 @@ jobs:
 
       - name: build
         run: |
-          echo Building,
-          echo and Testing.
-          
+          echo Getting libs,
+          echo and building.
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
