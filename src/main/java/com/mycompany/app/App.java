@@ -12,7 +12,7 @@ public class App {
     public static void main(String[] args) {
         System.out.println(MESSAGE);
         int i = 0;
-        string azure_sql_password = "hello";
+        String azure_sql_password = new String("hello");
     }
 
     public String getMessage() {
