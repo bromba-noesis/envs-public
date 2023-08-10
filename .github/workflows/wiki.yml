@@ -12,7 +12,7 @@ jobs:
       - name: Date
         run: echo $(date +'%Y%m%d')
       - name: Hour
-        run: echo $(date +'%H:%M:%S')"
+        run: echo $(date +'%H:%M:%S')
       - name: Branch name
         run: echo ${GITHUB_REF##*/}
       - name: Upload Documentation to Wiki
