@@ -16,7 +16,7 @@ jobs:
       - name: Branch name
         run: echo ${GITHUB_REF##*/}
       - name: Commit ID
-        run: echo ${GITHUB_SHA}"
+        run: echo ${GITHUB_SHA}
       - name: Upload Documentation to Wiki
         uses: SwiftDocOrg/github-wiki-publish-action@v1
         with:
