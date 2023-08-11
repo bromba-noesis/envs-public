@@ -3,13 +3,16 @@ name: Prod
 on:
   workflow_dispatch:
 
-jobs:          
-  deploy:
+jobs:     
+  approve:
     runs-on: ubuntu-latest
     environment: Production
-
     steps:
       - name: approve/reject
         run: echo Approving/rejecting.
+  deploy:
+    needs: approve
+    runs-on: ubuntu-latest
+    steps:
       - name: deploy
         run: echo Deploying to Prod environment.
