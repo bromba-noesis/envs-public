@@ -12,7 +12,9 @@ jobs:
       - name: Date
         run: echo "mydate=$(date +'%Y%m%d')" >> $GITHUB_ENV
       - name: Hour
-        run: echo $(date +'%H:%M:%S')
+        run: |
+          echo $mydate
+          echo $(date +'%H:%M:%S')
       - name: Branch name
         run: echo ${GITHUB_REF##*/}
       - name: Commit ID
