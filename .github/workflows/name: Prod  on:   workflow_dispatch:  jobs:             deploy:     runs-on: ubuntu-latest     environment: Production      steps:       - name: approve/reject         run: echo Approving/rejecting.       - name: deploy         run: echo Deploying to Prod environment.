@@ -9,5 +9,7 @@ jobs:
     environment: Production
 
     steps:
+      - name: approve/reject
+        run: echo Approving/rejecting.
       - name: deploy
         run: echo Deploying to Prod environment.
