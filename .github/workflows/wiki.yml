@@ -4,7 +4,7 @@ on:
     workflow_dispatch:
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,13 +12,15 @@ jobs:
       - name: Date
         run: echo "mydate=$(date +'%Y%m%d')" >> $GITHUB_ENV
       - name: Hour
-        run: |
-          echo $mydate
-          echo $(date +'%H:%M:%S')
-      - name: Branch name
-        run: echo ${GITHUB_REF##*/}
+        run: echo "myhour=$(date +'%H:%M:%S')" >> $GITHUB_ENV
       - name: Commit ID
-        run: echo ${GITHUB_SHA}
+        run: echo "mycid=${GITHUB_SHA}" >> $GITHUB_ENV
+      - name: Branch name
+        run: echo "mybranch=${GITHUB_REF##*/}" >> $GITHUB_ENV
+      - name: Tag name
+        run: echo "mytag=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+      - name: prep file
+        run: echo | $mydate | $myhour | $mycid | $mybranch | $mytag |
       - name: Upload Documentation to Wiki
         uses: SwiftDocOrg/github-wiki-publish-action@v1
         with:
