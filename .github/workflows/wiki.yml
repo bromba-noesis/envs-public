@@ -18,7 +18,7 @@ jobs:
       - name: Branch name
         run: echo "mybranch=${GITHUB_REF##*/}" >> $GITHUB_ENV
       - name: Tag name
-        run: echo "mytag=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+        run: echo "mytag=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: prep file
         run: |
           echo $mytag
