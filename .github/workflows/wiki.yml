@@ -14,3 +14,15 @@ jobs:
           echo "myCID=${GITHUB_SHA}" >> $GITHUB_ENV
           echo "myBranch=${GITHUB_REF##*/}" >> $GITHUB_ENV
           echo "myTag=$GITHUB_REF_NAME" >> $GITHUB_ENV
+
+  deploy:
+    uses: bromba-noesis/wiki/.github/workflows/wiki_project_update.yml@main
+    with:
+      projectName: bbb
+      deploymentEnvironment: Development
+      deploymentDate: ${{ env.myDate }}
+      deploymentHour: ${{ env.myHour }}
+      CID: ${{ env.CID }}
+      projectBranch: ${{ env.myBranch }}
+      projectTag: ${{ env.myTag }}
+    secrets: inherit
