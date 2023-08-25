@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup
+        id: setup 
         run: |
-          echo "myDate=$(date +'%Y%m%d')" >> $GITHUB_ENV
+          echo "myDate=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
           echo "myHour=$(date +'%H:%M:%S')" >> $GITHUB_ENV
           echo "myCID=${GITHUB_SHA}" >> $GITHUB_ENV
           echo "myBranch=${GITHUB_REF##*/}" >> $GITHUB_ENV
@@ -20,7 +21,7 @@ jobs:
     with:
       projectName: bbb
       deploymentEnvironment: Development
-      deploymentDate: ${{ myDate }}
+      deploymentDate: ${{ steps.setup.outputs.myDate }}
       deploymentHour: $myHour
       CID: $CID
       projectBranch: $myBranch
