@@ -20,9 +20,9 @@ jobs:
     with:
       projectName: bbb
       deploymentEnvironment: Development
-      deploymentDate: ${{ env.myDate }}
-      deploymentHour: ${{ env.myHour }}
-      CID: ${{ env.CID }}
-      projectBranch: ${{ env.myBranch }}
-      projectTag: ${{ env.myTag }}
+      deploymentDate: $myDate
+      deploymentHour: $myHour
+      CID: $CID
+      projectBranch: $myBranch
+      projectTag: $myTag
     secrets: inherit
