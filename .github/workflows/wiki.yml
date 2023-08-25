@@ -20,7 +20,7 @@ jobs:
     with:
       projectName: bbb
       deploymentEnvironment: Development
-      deploymentDate: env.myDate
+      deploymentDate: $GITHUB_ENV.myDate
       deploymentHour: $myHour
       CID: $CID
       projectBranch: $myBranch
