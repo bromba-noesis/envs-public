@@ -21,7 +21,7 @@ jobs:
     with:
       projectName: bbb
       deploymentEnvironment: Development
-      deploymentDate: $(date +'%H:%M:%S')
+      deploymentDate: date +'%H:%M:%S'
       deploymentHour: $myHour
       CID: $CID
       projectBranch: $myBranch
