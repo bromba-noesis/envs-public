@@ -16,7 +16,7 @@ jobs:
         uses: laputansoft/github-tag-action@v4.6
         with:
           github_token: ${{ secrets.bromba_noesis_pat_wiki }}
-          tag: ${{ "v1.0.0-20230829" }}
+          tag: v1.0.0-20230829
 
   build:
     runs-on: ubuntu-latest
