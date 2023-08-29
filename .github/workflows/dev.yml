@@ -10,9 +10,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: Development
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
       - name: test
@@ -27,8 +27,12 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment: Development
 
     steps:
       - name: deploy
         run: echo Deploying to Dev environment.
+
+  wiki:
+    needs: deploy
+    uses: bromba-noesis/wiki/.github/workflows/wiki_project_update.yml@main
+    secrets: inherit
