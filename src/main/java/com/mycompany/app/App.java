@@ -11,6 +11,8 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(MESSAGE);
+        int i = 0;
+        String azure_sql_password = new String("hello");
     }
 
     public String getMessage() {
