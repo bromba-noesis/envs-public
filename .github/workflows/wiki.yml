@@ -4,26 +4,6 @@ on:
     workflow_dispatch:
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup
-        id: setup 
-        run: |
-          echo "myDate=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
-          echo "myHour=$(date +'%H:%M:%S')" >> $GITHUB_ENV
-          echo "myCID=${GITHUB_SHA}" >> $GITHUB_ENV
-          echo "myBranch=${GITHUB_REF##*/}" >> $GITHUB_ENV
-          echo "myTag=$GITHUB_REF_NAME" >> $GITHUB_ENV
-
   deploy:
     uses: bromba-noesis/wiki/.github/workflows/wiki_project_update.yml@main
-    with:
-      projectName: bbb
-      deploymentEnvironment: Development
-      deploymentDate: date +'%H:%M:%S'
-      deploymentHour: $myHour
-      CID: $CID
-      projectBranch: $myBranch
-      projectTag: $myTag
     secrets: inherit
