@@ -35,4 +35,6 @@ jobs:
   wiki:
     needs: deploy
     uses: bromba-noesis/wiki/.github/workflows/wiki_project_update.yml@main
+    with:
+      myEnvironment: Development
     secrets: inherit
