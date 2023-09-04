@@ -15,7 +15,7 @@ jobs:
       - name: deploy
         run: echo Deploying to Prod environment.
 
-  wiki:
+  report:
     needs: deploy
     uses: bromba-noesis/wiki/.github/workflows/wiki_project_update.yml@main
     with:
