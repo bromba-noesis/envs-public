@@ -10,25 +10,29 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    environment: Development
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: analyze
-        run:
-          echo Analyzing.
+      - name: test
+        run: echo Testing.
 
       - name: build
-        run: |
-          echo Building,
-          echo and Testing.
+        run: echo Building.
           
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment: Development
-
     steps:
-      - name: deploy
-        run: echo Deploying to Dev environment.
+      - name: deploy binaries        
+        run: echo Deploying binaries to Dev environment.
+      - name: deploy db
+        if: ${{ vars.HAS_DB == 'true' }}
+        run: echo Deploying to Dev DB.
+
+  report:
+    needs: deploy
+    uses: bromba-noesis/wiki/.github/workflows/wiki_project_update.yml@main
+    with:
+      myEnvironment: Development
+    secrets: inherit

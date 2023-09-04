@@ -8,25 +8,31 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      - name: analyze
-        run:
-          echo Analyzing.
-
-      - name: build
-        run: |
-          echo Building,
-          echo and Testing.
-          
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
     environment: Quality
 
     steps:
-      - name: deploy
-        run: echo Deploying to Qua environment.
+      - uses: actions/checkout@v3
+
+      - name: test
+        run: echo Testing.
+
+      - name: build
+        run: echo Building.
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: deploy binaries        
+        run: echo Deploying binaries to Qua environment.
+      - name: deploy db
+        if: ${{ vars.HAS_QUA_DB == 'true' }}
+        run: echo Deploying to Qua DB.
+
+  wiki:
+    needs: deploy
+    uses: bromba-noesis/wiki/.github/workflows/wiki_project_update.yml@main
+    with:
+      myEnvironment: Quality
+    secrets: inherit
