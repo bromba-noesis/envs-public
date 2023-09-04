@@ -27,7 +27,7 @@ jobs:
       - name: deploy binaries        
         run: echo Deploying binaries to Qua environment.
       - name: deploy db
-        if: ${{ vars.HAS_QUA_DB == 'true' }}
+        if: ${{ env.HAS_QUA_DB == 'true' }}
         run: echo Deploying to Qua DB.
 
   wiki:
