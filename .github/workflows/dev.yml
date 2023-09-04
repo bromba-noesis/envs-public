@@ -27,7 +27,7 @@ jobs:
       - name: deploy binaries        
         run: echo Deploying binaries to Dev environment.
       - name: deploy db
-        if: ${{ env.HAS_DB == 'true' }}
+        if: ${{ vars.HAS_DB == 'true' }}
         run: echo Deploying to Dev DB.
 
   report:
