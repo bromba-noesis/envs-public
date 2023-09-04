@@ -11,28 +11,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: Development
-
     steps:
       - uses: actions/checkout@v3
 
       - name: test
-        run:
-          echo Testing.
+        run: echo Testing.
 
       - name: build
-        run: |
-          echo Getting libs,
-          echo and building.
+        run: echo Building.
           
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
     steps:
-      - name: deploy
-        run: echo Deploying to Dev environment.
+      - name: deploy binaries        
+        run: echo Deploying binaries to Dev environment.
+      - name: deploy db
+        if: ${{ vars.HAS_DB == 'true' }}
+        run: echo Deploying to Dev DB.
 
-  wiki:
+  report:
     needs: deploy
     uses: bromba-noesis/wiki/.github/workflows/wiki_project_update.yml@main
     with:

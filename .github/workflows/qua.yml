@@ -14,21 +14,21 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: test
-        run:
-          echo Testing.
+        run: echo Testing.
 
       - name: build
-        run: |
-          echo Getting libs,
-          echo and building.
+        run: echo Building.
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - name: deploy
-        run: echo Deploying to Qua environment.
+      - name: deploy binaries        
+        run: echo Deploying binaries to Qua environment.
+      - name: deploy db
+        if: ${{ vars.HAS_QUA_DB == 'true' }}
+        run: echo Deploying to Qua DB.
 
   wiki:
     needs: deploy
