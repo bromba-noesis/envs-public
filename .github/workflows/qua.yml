@@ -24,8 +24,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: deploy
-        run: echo Deploying to Qua environment.
+      - name: deploy binaries        
+        run: echo Deploying binaries to Qua environment.
+      - name: deploy db
+        if: ${{ vars.HAS_QUA_DB == 'true' }}
+        run: echo Deploying to Qua DB.
 
   wiki:
     needs: deploy
