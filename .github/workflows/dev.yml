@@ -24,8 +24,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: deploy
-        run: echo Deploying to Dev environment.
+      - name: deploy binaries        
+        run: echo Deploying binaries to Dev environment.
+      - name: deploy db
+        if: ${{ env.HAS_DB == 'true' }}
+        run: echo Deploying to Dev DB.
 
   report:
     needs: deploy
