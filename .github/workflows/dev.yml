@@ -38,10 +38,6 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: my-artifact
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: blabla
     
       - name: deploy db
         if: ${{ vars.HAS_DB == 'true' }}
