@@ -34,9 +34,16 @@ jobs:
     steps:
       - name: deploy binaries        
         run: echo Deploying binaries to Dev environment.
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+    
       - name: deploy db
         if: ${{ vars.HAS_DB == 'true' }}
-        run: echo Deploying to Dev DB.
+        run: |
+          echo Deploying to Dev DB.
+          cat log.txt
 
   report:
     needs: deploy
