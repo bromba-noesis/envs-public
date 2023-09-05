@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     environment: Development
     steps:
       - uses: actions/checkout@v3
@@ -19,6 +19,14 @@ jobs:
 
       - name: build
         run: echo Building.
+
+      - name: output
+        run: echo "123" | Out-File log.txt
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: log.txt
           
   deploy:
     needs: build
