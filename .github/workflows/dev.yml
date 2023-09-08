@@ -42,11 +42,12 @@ jobs:
       - uses: actions/checkout@v3 
         if: ${{ vars.HAS_DB == 'true' }}
 
-      - uses: liquibase-github-actions/update@v4.20.0
+      - uses: liquibase-github-actions/update@v4.23.1
         if: ${{ vars.HAS_DB == 'true' }}
         with:
           changelogFile: "liquibase/changelog.xml"
-          url: "jdbc:mysql://sql11.freesqldatabase.com:3306"
+          url: "sql11.freesqldatabase.com:3306"
+          driver: "mysql"
           defaultSchemaName: "${{ vars.DB_SCHEMA }}"
           username: "${{ vars.DB_USER }}"
           password: "${{ secrets.DB_PASSWORD }}"
