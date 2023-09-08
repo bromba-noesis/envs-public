@@ -38,15 +38,18 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: my-artifact
-    
-      - name: check db
-        if: ${{ vars.HAS_DB == 'true' }}
-        run: |
-          echo File contente is:
-          cat log.txt
-
+          
       - uses: actions/checkout@v3 
         if: ${{ vars.HAS_DB == 'true' }}
+
+      - uses: liquibase-github-actions/update@v4.23.1
+        if: ${{ vars.HAS_DB == 'true' }}
+        with:
+          changelogFile: "liquibase/changelog.xml"
+          url: "jdbc:mysql://sql11.freesqldatabase.com:3306"
+          defaultSchemaName: "${{ vars.DB_SCHEMA }}"
+          username: "${{ vars.DB_USER }}"
+          password: "${{ secrets.DB_PASSWORD }}"
 
   report:
     needs: deploy
