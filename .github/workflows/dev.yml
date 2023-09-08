@@ -47,7 +47,7 @@ jobs:
         with:
           changelogFile: liquibase/changelog.xml
           url: sql11.freesqldatabase.com:3306
-          driver: mariadb-java-client
+          driver: org.mariadb.jdbc
           defaultSchemaName: "${{ vars.DB_SCHEMA }}"
           username: "${{ vars.DB_USER }}"
           password: "${{ secrets.DB_PASSWORD }}"
