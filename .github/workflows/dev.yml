@@ -45,9 +45,9 @@ jobs:
       - uses: liquibase-github-actions/update@v4.23.1
         if: ${{ vars.HAS_DB == 'true' }}
         with:
-          changelogFile: "liquibase/changelog.xml"
-          url: "sql11.freesqldatabase.com:3306"
-          driver: "com.mysql.cj.jdbc.Driver"
+          changelogFile: liquibase/changelog.xml
+          url: jdbc:mysql://sql11.freesqldatabase.com:3306
+          driver: com.mysql.cj.jdbc.Driver
           defaultSchemaName: "${{ vars.DB_SCHEMA }}"
           username: "${{ vars.DB_USER }}"
           password: "${{ secrets.DB_PASSWORD }}"
