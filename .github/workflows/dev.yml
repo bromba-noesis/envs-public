@@ -51,6 +51,7 @@ jobs:
           defaultSchemaName: "${{ vars.DB_SCHEMA }}"
           username: "${{ vars.DB_USER }}"
           password: "${{ secrets.DB_PASSWORD }}"
+          logLevel: FINE
 
   report:
     needs: deploy
