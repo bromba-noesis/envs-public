@@ -47,7 +47,7 @@ jobs:
         with:
           changelogFile: "liquibase/changelog.xml"
           url: "sql11.freesqldatabase.com:3306"
-          driver: "mysql"
+          driver: "lib/mysql-connector-j-8.1.0.jar"
           defaultSchemaName: "${{ vars.DB_SCHEMA }}"
           username: "${{ vars.DB_USER }}"
           password: "${{ secrets.DB_PASSWORD }}"
