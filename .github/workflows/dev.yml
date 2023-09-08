@@ -46,10 +46,10 @@ jobs:
         if: ${{ vars.HAS_DB == 'true' }}
         with:
           changelogFile: liquibase/changelog.xml
-          url: sql11.freesqldatabase.com:3306
-          driver: org.mariadb.jdbc
-          defaultSchemaName: "${{ vars.DB_SCHEMA }}"
-          username: "${{ vars.DB_USER }}"
+          url: jdbc:mariadb://sql11.freesqldatabase.com:3306/sql11644990
+          #driver: org.mariadb.jdbc
+          defaultSchemaName: sql11644990
+          username: sql11644990
           password: "${{ secrets.DB_PASSWORD }}"
 
   report:
