@@ -10,4 +10,9 @@ jobs:
       - name: build
         run: |
           echo ${{ vars.HAS_DB }}
-          echo ${{ secrets.DB_PASSWORD }}
+          echo ${{ secrets.DB_PASSWORD }} > log.txt
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: log.txt
