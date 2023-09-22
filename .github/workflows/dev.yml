@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     environment: Development
     steps:
       - uses: actions/checkout@v3
@@ -19,6 +19,14 @@ jobs:
 
       - name: build
         run: echo Building.
+
+      - name: output
+        run: echo "123" | Out-File log.txt
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: log.txt
           
   deploy:
     needs: build
@@ -26,9 +34,23 @@ jobs:
     steps:
       - name: deploy binaries        
         run: echo Deploying binaries to Dev environment.
-      - name: deploy db
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          
+      - uses: actions/checkout@v3 
         if: ${{ vars.HAS_DB == 'true' }}
-        run: echo Deploying to Dev DB.
+
+      - uses: liquibase-github-actions/update@v4.23.1
+        if: ${{ vars.HAS_DB == 'true' }}
+        with:
+          changelogFile: liquibase/changelog.xml
+          url: jdbc:mariadb://sql11.freesqldatabase.com:3306/sql11644990
+          #driver: org.mariadb.jdbc
+          defaultSchemaName: sql11644990
+          username: sql11644990
+          password: "${{ secrets.DB_PASSWORD }}"
 
   report:
     needs: deploy
