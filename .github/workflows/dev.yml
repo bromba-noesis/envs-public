@@ -1,60 +1,13 @@
 name: Dev
 
 on:
-  push:
-    branches: [ "development" ]
-  pull_request:
-    branches: [ "development" ]
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest
-    environment: Development
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: test
-        run: echo Testing.
-
-      - name: build
-        run: echo Building.
-
-      - name: output
-        run: echo "123" | Out-File log.txt
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: log.txt
-          
-  deploy:
-    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: deploy binaries        
-        run: echo Deploying binaries to Dev environment.
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: my-artifact
-          
-      - uses: actions/checkout@v3 
-        if: ${{ vars.HAS_DB == 'true' }}
-
-      - uses: liquibase-github-actions/update@v4.23.1
-        if: ${{ vars.HAS_DB == 'true' }}
-        with:
-          changelogFile: liquibase/changelog.xml
-          url: jdbc:mariadb://sql11.freesqldatabase.com:3306/sql11644990
-          #driver: org.mariadb.jdbc
-          defaultSchemaName: sql11644990
-          username: sql11644990
-          password: "${{ secrets.DB_PASSWORD }}"
-
-  report:
-    needs: deploy
-    uses: bromba-noesis/wiki/.github/workflows/wiki_project_update.yml@main
-    with:
-      myEnvironment: Development
-    secrets: inherit
+      - name: build
+        run: |
+          echo "$vars.HAS_DB"
+          echo "$secrets.DB_PASSWORD"
