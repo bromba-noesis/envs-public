@@ -9,23 +9,11 @@ jobs:
     steps:
       - name: build
         run: |
-          echo ${{ vars.ORG_VAR }}
-        
           echo ${{ secrets.REPO_SECRET }}
-          echo ${{ secrets.ORG_SECRET }}
-          
-          echo ${{ secrets.REPO_SECRET }} >> log1.txt
-          echo ${{ secrets.ORG_SECRET }} >> log2.txt
-          
-          cat log1.txt
-          cat log2.txt
+          echo ${{ secrets.REPO_SECRET }} >> log.txt
+          cat log.txt
 
       - uses: actions/upload-artifact@v3
         with:
-          name: log1
-          path: log1.txt
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: log2
-          path: log2.txt
+          name: log
+          path: log.txt
