@@ -10,8 +10,10 @@ jobs:
       - name: build
         run: |
           echo ${{ vars.HAS_DB }}
-          echo ${{ secrets.DB_PASSWORD }}
-          echo ${{ secrets.DB_PASSWORD }} > log.txt
+          echo ${{ secrets.REPO_SECRET }}
+          echo ${{ secrets.ORG_SECRET }}
+          echo ${{ secrets.REPO_SECRET }} >> log.txt
+          echo ${{ secrets.ORG_SECRET }} >> log.txt
           cat log.txt
 
       - uses: actions/upload-artifact@v3
