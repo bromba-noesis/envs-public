@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: build
         run: |
+          echo ${{ vars.ORG_VAR }}
+        
           echo ${{ secrets.REPO_SECRET }}
           echo ${{ secrets.ORG_SECRET }}
           
