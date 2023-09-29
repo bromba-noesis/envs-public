@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ "development" ]
   workflow_dispatch:
+    inputs:
+      boolean:
+        type: boolean
+        description: Drop all tables on Dev environment?
 
 jobs:
   build:
