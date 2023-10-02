@@ -37,6 +37,7 @@ jobs:
     if: ${{ github.event.inputs.dbDrop }}
     steps:
       - uses: liquibase-github-actions/drop-all@v4.23.1
+        if: ${{ vars.HAS_DB == 'true' }}
         with:
           url: jdbc:mariadb://sql11.freesqldatabase.com:3306/sql11644990
           defaultSchemaName: sql11644990
