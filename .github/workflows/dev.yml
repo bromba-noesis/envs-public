@@ -7,8 +7,9 @@ on:
     branches: [ "development" ]
   workflow_dispatch:
     inputs:
-      boolean:
+      dbDrop:
         type: boolean
+        required: true
         description: Drop all tables on Dev environment?
 
 jobs:
@@ -31,6 +32,18 @@ jobs:
         with:
           name: my-artifact
           path: log.txt
+
+  dbDropAll:
+    runs-on: ubuntu-late
+    if: ${{ vars.HAS_DB == 'true' }} && ${{ github.event.inputs.dbDrop }}
+    steps:
+    
+      - uses: liquibase-github-actions/drop-all@v4.23.1
+        with:
+          url: jdbc:mariadb://sql11.freesqldatabase.com:3306/sql11644990
+          defaultSchemaName: sql11644990
+          username: sql11644990
+          password: "${{ secrets.DB_PASSWORD }}"
           
   deploy:
     needs: build
@@ -45,14 +58,6 @@ jobs:
           
       - uses: actions/checkout@v3 
         if: ${{ vars.HAS_DB == 'true' }}
-
-      - uses: liquibase-github-actions/drop-all@v4.23.1
-        if: ${{ vars.HAS_DB == 'true' }} && ${{ github.event.inputs.boolean }}
-        with:
-          url: jdbc:mariadb://sql11.freesqldatabase.com:3306/sql11644990
-          defaultSchemaName: sql11644990
-          username: sql11644990
-          password: "${{ secrets.DB_PASSWORD }}"
 
       - uses: liquibase-github-actions/update@v4.23.1
         if: ${{ vars.HAS_DB == 'true' }}
