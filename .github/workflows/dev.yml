@@ -62,20 +62,19 @@ jobs:
         if: ${{ vars.HAS_DB == 'true' }}
         with:
           changelogFile: liquibase/changelog.xml
-          url: jdbc:mariadb://sql11.freesqldatabase.com:3306/sql11644990
-          #driver: org.mariadb.jdbc
-          defaultSchemaName: sql11644990
-          username: sql11644990
+          url: jdbc:sqlserver://azsql0.database.windows.net:1433;database=mySQLdb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+          defaultSchemaName: mySQLdb
+          username: adminLogin@azsql0
           password: "${{ secrets.DB_PASSWORD }}"
 
-      - uses: liquibase-github-actions/execute-sql@v4.23.2
-        if: ${{ vars.HAS_DB == 'true' }}
-        with:
-          sql: "INSERT INTO myTable (num) VALUES (456);"
-          url: jdbc:mariadb://sql11.freesqldatabase.com:3306/sql11644990
-          defaultSchemaName: sql11644990
-          username: sql11644990
-          password: "${{ secrets.DB_PASSWORD }}"
+      #- uses: liquibase-github-actions/execute-sql@v4.23.2
+      #  if: ${{ vars.HAS_DB == 'true' }}
+      #  with:
+      #    sql: "INSERT INTO myTable (num) VALUES (456);"
+      #    url: jdbc:mariadb://sql11.freesqldatabase.com:3306/sql11644990
+      #    defaultSchemaName: sql11644990
+      #    username: sql11644990
+      #    password: "${{ secrets.DB_PASSWORD }}"
 
   report:
     needs: deploy
