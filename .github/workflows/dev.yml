@@ -7,8 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: build
+      - name: secrets
         run: |
+          echo ${{ secrets.PROD_SECRET }}
           echo ${{ secrets.REPO_SECRET }}
           echo ${{ secrets.REPO_SECRET }} >> log.txt
           cat log.txt
