@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: secrets
         run: |
+          echo ${{ vars.DEV_VAR }}
           echo ${{ vars.PROD_VAR }}
           
           echo ${{ secrets.PROD_SECRET }}
