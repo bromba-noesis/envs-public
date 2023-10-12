@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: secrets
         run: |
+          echo ${{ vars.PROD_VAR }}
+          
           echo ${{ secrets.PROD_SECRET }}
           echo ${{ secrets.PROD_SECRET }} >> log.txt
           
