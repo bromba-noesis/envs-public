@@ -14,12 +14,15 @@ jobs:
         run: |
           echo ${{ vars.DEV_VAR }}
           echo ${{ vars.PROD_VAR }}
+
+          echo ${{ secrets.DEV_SECRET }}
+          echo ${{ secrets.DEV_SECRET }} >> log.txt
           
           echo ${{ secrets.PROD_SECRET }}
           echo ${{ secrets.PROD_SECRET }} >> log.txt
           
           echo ${{ secrets.REPO_SECRET }}
-          #echo ${{ secrets.REPO_SECRET }} >> log.txt
+          echo ${{ secrets.REPO_SECRET }} >> log.txt
           
           cat log.txt
 
