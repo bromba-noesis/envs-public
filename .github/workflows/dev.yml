@@ -6,7 +6,7 @@ on:
 jobs:
   secrets:
     runs-on: ubuntu-latest
-    environment: Production
+    # environment: Production
     
     steps:
       - name: secrets
