@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: secrets
         run: |
+          gh --version
+        
           echo ${{ vars.DEV_VAR }}
           echo ${{ vars.PROD_VAR }}
 
