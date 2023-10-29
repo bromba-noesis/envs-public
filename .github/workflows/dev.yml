@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: secrets
         run: |
-          gh --version
+          gh config list 
         
           echo ${{ vars.DEV_VAR }}
           echo ${{ vars.PROD_VAR }}
