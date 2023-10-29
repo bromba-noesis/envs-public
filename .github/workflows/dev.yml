@@ -9,7 +9,7 @@ jobs:
     # environment: Production
     environment: Development
     env:
-      GH_TOKEN: ${{ github.bromba-noesis-pat2 }}
+      GH_TOKEN: ${{ secrets.bromba_noesis_pat2 }}
     
     steps:
       - name: secrets
