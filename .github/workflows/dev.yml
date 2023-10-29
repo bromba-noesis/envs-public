@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     # environment: Production
     environment: Development
+    env:
+      GH_TOKEN: ${{ github.bromba-noesis-pat2 }}
     
     steps:
       - name: secrets
