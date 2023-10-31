@@ -15,18 +15,31 @@ jobs:
       - name: secrets
         run: |
           gh ruleset list
-        
+
+          echo echoing dev var
           echo ${{ vars.DEV_VAR }}
+
+          echo echoing prod var
           echo ${{ vars.PROD_VAR }}
 
-          echo ${{ secrets.DEV_SECRET }}
-          echo ${{ secrets.DEV_SECRET }} >> log.txt
-          
-          echo ${{ secrets.PROD_SECRET }}
-          echo ${{ secrets.PROD_SECRET }} >> log.txt
-          
+          echo echoing org var
+          echo ${{ vars.ORG_VAR }}
+
+          echo echoing org secret
+          echo ${{ secrets.ORG_SECRET }}
+          echo ${{ secrets.ORG_SECRET }} >> log.txt
+
+          echo echoing repo secret
           echo ${{ secrets.REPO_SECRET }}
           echo ${{ secrets.REPO_SECRET }} >> log.txt
+          
+          echo echoing dev secret
+          echo ${{ secrets.DEV_SECRET }}
+          echo ${{ secrets.DEV_SECRET }} >> log.txt
+
+          echo echoing prod secret
+          echo ${{ secrets.PROD_SECRET }}
+          echo ${{ secrets.PROD_SECRET }} >> log.txt
           
           cat log.txt
 
