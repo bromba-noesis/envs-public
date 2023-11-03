@@ -12,9 +12,11 @@ jobs:
       GH_TOKEN: ${{ secrets.bromba_noesis_pat2 }}
     
     steps:
+      - uses: actions/checkout@v3
+    
       - name: secrets
         run: |
-          # gh ruleset list
+          gh ruleset list
 
           echo echoing dev var
           echo ${{ vars.DEV_VAR }}
