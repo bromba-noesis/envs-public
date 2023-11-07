@@ -16,7 +16,6 @@ jobs:
     
       - name: secrets
         run: |
-          gh ruleset list
 
           echo echoing dev var
           echo ${{ vars.DEV_VAR }}
