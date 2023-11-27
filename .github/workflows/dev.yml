@@ -71,7 +71,7 @@ jobs:
       - uses: bromba-noesis/execute-sql@v4.23.2
         if: ${{ vars.HAS_DB == 'true' }}
         with:
-          sql: "INSERT INTO myTable (num) VALUES (456);"
+          sql: "INSERT INTO myTable (word) VALUES (\"xyz\");"
           url: jdbc:mariadb://sql11.freesqldatabase.com:3306/sql11644990
           defaultSchemaName: sql11644990
           username: sql11644990
