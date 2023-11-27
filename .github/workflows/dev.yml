@@ -34,7 +34,7 @@ jobs:
 
   dbDropAll:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.dbDrop }}
+    if: ${{ github.event.inputs.dbDrop == true }}
     steps:
       - uses: bromba-noesis/drop-all@v4.23.1
         if: ${{ vars.HAS_DB == 'true' }}
