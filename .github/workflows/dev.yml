@@ -1,10 +1,10 @@
 name: Dev
 
 on:
-  push:
-    branches: [ "development" ]
-  pull_request:
-    branches: [ "development" ]
+  #push:
+  #  branches: [ "development" ]
+  #pull_request:
+  #  branches: [ "development" ]
   workflow_dispatch:
     inputs:
       dbDrop:
